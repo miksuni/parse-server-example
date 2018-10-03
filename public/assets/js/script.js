@@ -57,6 +57,7 @@ ParseRequest.postData = function() {
   XHR.setCallback(function(data){
     // store objectID
     Store.objectId = JSON.parse(data).objectId;
+    console.log(data);
     // close first step
     Steps.closeStep('#step-1');
     Steps.fillStepOutput('#step-1-output', data);
