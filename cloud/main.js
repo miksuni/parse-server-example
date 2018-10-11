@@ -1,8 +1,7 @@
 
 Parse.Cloud.define('hello', function(req, res) {
   //res.success('Hi');
-  var result = "{OK}"
-  res.success(result);
+  res.error('sjot');
 });
 
 /*Parse.Cloud.define(‘hello’, (req) => {
