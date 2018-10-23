@@ -4,5 +4,6 @@
 //});
 
 Parse.Cloud.define('hello', (req) => {
+	 console.log(request);
      return 'ok';
 });
