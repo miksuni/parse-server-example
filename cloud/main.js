@@ -3,7 +3,8 @@
 //  res.success('Hi');
 //});
 
-Parse.Cloud.define('hello', (req) => {
+//Parse.Cloud.define('hello', (req) => {
+Parse.Cloud.define('hello', async (req) => {
 	console.log(req);
     //return 'ok';
     var returnMessage = '...';
@@ -43,12 +44,20 @@ Parse.Cloud.define('hello', (req) => {
 		}, function(err) {console.log(err); });
 	}, function(err) { console.log(err); });*/
 
-	var query = new Parse.Query('Exercise');
-	query.find().then(function(results) {
-		console.log('found');
-		returnMessage = 'step 3';
-		return returnMessage;
-	}, function(err) {console.log(err); });
+	//var query = new Parse.Query('Exercise');
+	//query.find().then(function(results) {
+	//	console.log('found');
+	//	returnMessage = 'step 3';
+	//	return returnMessage;
+	//}, function(err) {console.log(err); });
+
+	const query = new Parse.Query('Exercise');
+	const results = await query.find();
+	let sum = 0;
+	for (let i = 0; i < results.length; ++i) {
+		sum += results[i].get("stars");
+	}
+	return sum / results.length;
 
     //return returnMessage;
 });
