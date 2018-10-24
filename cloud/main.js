@@ -54,10 +54,11 @@ Parse.Cloud.define('hello', async (req) => {
 	const query = new Parse.Query('Exercise');
 	const results = await query.find();
 	let sum = 0;
-	for (let i = 0; i < results.length; ++i) {
-		sum += results[i].get("stars");
-	}
-	return sum / results.length;
+	//for (let i = 0; i < results.length; ++i) {
+	//	sum += results[i].get("stars");
+	//}
+	//return sum / results.length;
+	return results.length;
 
     //return returnMessage;
 });
