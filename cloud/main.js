@@ -47,8 +47,8 @@ Parse.Cloud.define('hello', (req) => {
 	query.find().then(function(results) {
 		console.log('found');
 		returnMessage = 'step 3';
+		return returnMessage;
 	}, function(err) {console.log(err); });
-
 
     return returnMessage;
 });
