@@ -14,7 +14,9 @@ Parse.Cloud.define('hello', (req) => {
     returnMessage = 'step 2';
     query.find().then(function(results) {
 		returnMessage = 'step 3';
-    });
+    }).catch(function(error){
+		returnMessage = 'step 4';
+    })
     /*query.find({
 		success: function(results) {
 			console.log("Exercise query ok");
