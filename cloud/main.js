@@ -9,7 +9,9 @@ Parse.Cloud.define('hello', (req) => {
     var returnMessage = '';
 
     var exercises = Parse.Object.extend("Exercise");
+    returnMessage = 'step 1';
     var query = new Parse.Query(exercises);
+    returnMessage = 'step 2';
     query.find({
 		success: function(results) {
 			console.log("Exercise query ok");
