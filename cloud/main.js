@@ -50,5 +50,5 @@ Parse.Cloud.define('hello', (req) => {
 		return returnMessage;
 	}, function(err) {console.log(err); });
 
-    return returnMessage;
+    //return returnMessage;
 });
