@@ -12,7 +12,10 @@ Parse.Cloud.define('hello', (req) => {
     returnMessage = 'step 1';
     var query = new Parse.Query(exercises);
     returnMessage = 'step 2';
-    query.find({
+    query.find().then(function(results)) {
+		returnMessage = 'step 3';
+    });
+    /*query.find({
 		success: function(results) {
 			console.log("Exercise query ok");
 			returnMessage = 'ok';
@@ -21,6 +24,7 @@ Parse.Cloud.define('hello', (req) => {
 			console.log("Exercise query failed: " + error.message);
 			returnMessage = 'error';
 		}
-	});
+	});*/
+
     return returnMessage;
 });
