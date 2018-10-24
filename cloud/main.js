@@ -6,7 +6,7 @@
 Parse.Cloud.define('hello', (req) => {
 	console.log(req);
     //return 'ok';
-    var returnMessage = '';
+    var returnMessage = '...';
 
     /*var exercises = Parse.Object.extend("Exercise");
     returnMessage = 'step 1';
@@ -28,7 +28,7 @@ Parse.Cloud.define('hello', (req) => {
 		}
 	});*/
 
-	var obj = new Parse.Object('GameScore');
+	/*var obj = new Parse.Object('GameScore');
 	returnMessage = 'step 1';
 	obj.set('score',1337);
 	returnMessage = 'step 2';
@@ -41,7 +41,7 @@ Parse.Cloud.define('hello', (req) => {
 			returnMessage = 'step 5';
 			console.log(objAgain.toJSON());
 		}, function(err) {console.log(err); });
-	}, function(err) { console.log(err); });
+	}, function(err) { console.log(err); });*/
 
     return returnMessage;
 });
