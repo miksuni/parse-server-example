@@ -66,7 +66,22 @@ Parse.Cloud.define('hello', async (req) => {
 Parse.Cloud.define('settings', async (req) => {
 	console.log(req);
 
-	var returnMessage = '...';
+	let returnMessage = '';
 
+	const query = new Parse.Query('Settings');
+	const results = await query.find();
+
+	if (results.length > 0) {
+		settingsNameVal = results[0].get("name");
+		exerciseCountVal = results[0].get("exerciseCount");
+		pauseInSecVal = results[0].get("pauseInSec");
+		repeatsInSetVal = results[0].get("repeatsInSet");
+	}
+
+	returnMessage =  JSON.stringify(name: settingsNameVal,
+						  exerciseCount: exerciseCountVal,
+						  pauseInSec: pauseInSecVal,
+						  repeatsInSet: repeatsInSetVal);
+	console.log(returnMessage);
 	return returnMessage;
 });
