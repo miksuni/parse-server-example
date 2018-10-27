@@ -78,10 +78,10 @@ Parse.Cloud.define('settings', async (req) => {
 		repeatsInSetVal = results[0].get("repeatsInSet");
 	}
 
-	returnMessage =  JSON.stringify(name: settingsNameVal,
+	returnMessage =  JSON.stringify({name: settingsNameVal,
 						  exerciseCount: exerciseCountVal,
 						  pauseInSec: pauseInSecVal,
-						  repeatsInSet: repeatsInSetVal);
+						  repeatsInSet: repeatsInSetVal});
 	console.log(returnMessage);
 	return returnMessage;
 });
