@@ -62,3 +62,11 @@ Parse.Cloud.define('hello', async (req) => {
 
     //return returnMessage;
 });
+
+Parse.Cloud.define('settings', async (req) => {
+	console.log(req);
+
+	var returnMessage = '...';
+
+	return returnMessage;
+});
