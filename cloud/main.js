@@ -6,8 +6,11 @@
 //Parse.Cloud.define('hello', (req) => {
 Parse.Cloud.define('hello', async (req) => {
 	console.log(req);
-    //return 'ok';
+
     var returnMessage = '...';
+
+    settingsStr: string = '';
+	settings = { name:'', exerciseCount:'', pauseInSec:'', repeatsInSet:'' };
 
     /*var exercises = Parse.Object.extend("Exercise");
     returnMessage = 'step 1';
@@ -65,6 +68,9 @@ Parse.Cloud.define('hello', async (req) => {
 
 Parse.Cloud.define('settings', async (req) => {
 	console.log(req);
+	console.log(req.Input);
+
+	this.settings = JSON.parse(req.Input);
 
 	let returnMessage = '';
 
