@@ -70,7 +70,7 @@ Parse.Cloud.define('settings', async (req) => {
 	console.log(req);
 	console.log(req.Input);
 
-	this.settings = JSON.parse(req.Input);
+	//this.settings = JSON.parse(req.Input);
 
 	let returnMessage = '';
 
