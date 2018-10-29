@@ -70,11 +70,11 @@ Parse.Cloud.define('settings', async (req) => {
 	console.log(">>Request: " + JSON.stringify(req));
 	//console.log(req.Input);
 
-	/*if (Object.keys(req.Input).length > 0) {
+	if (Object.keys(req).length > 0) {
 		console.log("json contains data");
 	} else {
 		console.log("empty json");
-	}*/
+	}
 
 	//this.settings = JSON.parse(req.Input);
 
