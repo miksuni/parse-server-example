@@ -67,7 +67,7 @@ Parse.Cloud.define('hello', async (req) => {
 });
 
 Parse.Cloud.define('settings', async (req) => {
-	//console.log(req);
+	console.log(">>Request: " + req);
 	//console.log(req.Input);
 
 	/*if (Object.keys(req.Input).length > 0) {
