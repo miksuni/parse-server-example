@@ -70,24 +70,23 @@ Parse.Cloud.define('settings', async (req) => {
 	console.log(">>Request: " + JSON.stringify(req));
 	//console.log(req.Input);
 
-	const testData = Object.keys(req);
 	if (Object.keys(req).length > 0) {
 		console.log("json contains data");
 	} else {
 		console.log("empty json");
 	}
 
-	if ('name' in testData) {
-		console.log('>>>>' + testData.name);
+	if ('name' in req) {
+		console.log('>>>>' + req.name);
 	}
-	if ('exerciseCount' in testData) {
-		console.log('>>>>' + testData.exerciseCount);
+	if ('exerciseCount' in req) {
+		console.log('>>>>' + req.exerciseCount);
 	}
-	if ('pauseInSec' in testData) {
-		console.log('>>>>' + testData.pauseInSec);
+	if ('pauseInSec' in req) {
+		console.log('>>>>' + req.pauseInSec);
 	}
-	if ('repeatsInSet' in testData) {
-		console.log('>>>>' + testData.repeatsInSet);
+	if ('repeatsInSet' in req) {
+		console.log('>>>>' + req.repeatsInSet);
 	}
 
 	//this.settings = JSON.parse(req.Input);
