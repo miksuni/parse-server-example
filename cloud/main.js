@@ -76,6 +76,19 @@ Parse.Cloud.define('settings', async (req) => {
 		console.log("empty json");
 	}
 
+	if ('name' in Object.keys.req) {
+		console.log('>>>>' + Object.keys.req.name);
+	}
+	if ('exerciseCount' in Object.keys.req) {
+		console.log('>>>>' + Object.keys.req.exerciseCount);
+	}
+	if ('pauseInSec' in Object.keys.req) {
+		console.log('>>>>' + Object.keys.req.pauseInSec);
+	}
+	if ('repeatsInSet' in Object.keys.req) {
+		console.log('>>>>' + Object.keys.req.repeatsInSet);
+	}
+
 	//this.settings = JSON.parse(req.Input);
 
 	let returnMessage = '';
