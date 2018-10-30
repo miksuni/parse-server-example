@@ -76,12 +76,12 @@ Parse.Cloud.define('settings', async (req) => {
 		console.log("empty json");
 	}
 
-	if ('name' in req) {
+	/*if ('name' in req) {
 		console.log('>>>>' + req.name);
-	}
+	} else {console.log('>>> name not found');}*/
 	if ('exerciseCount' in req) {
 		console.log('>>>>' + req.exerciseCount);
-	}
+	} else {console.log('>>> exerciseCount not found');}
 	if ('pauseInSec' in req) {
 		console.log('>>>>' + req.pauseInSec);
 	}
