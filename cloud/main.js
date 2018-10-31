@@ -75,20 +75,24 @@ Parse.Cloud.define('settings', async (req) => {
 		var newSettings = new Parse.Object('Settings');
 
 		if ('name' in req.params) {
-			console.log('>>>>' + req.params.name);
+			console.log('>>' + req.params.name);
 			newSettings.name = req.params.name;
+			console.log('>>>>' + newSettings.name);
 		} else {console.log('>>> name not found');}
 		if ('exerciseCount' in req.params) {
-			console.log('>>>>' + req.params.exerciseCount);
+			console.log('>>' + req.params.exerciseCount);
 			newSettings.exerciseCount = req.params.exerciseCount;
-		} else {console.log('>>> exerciseCount not found');}
+			console.log('>>>>' + newSettings.exerciseCount);
+		} else {console.log('>> exerciseCount not found');}
 		if ('pauseInSec' in req.params) {
-			console.log('>>>>' + req.params.pauseInSec);
+			console.log('>>' + req.params.pauseInSec);
 			newSettings.pauseInSec = req.params.pauseInSec;
+			console.log('>>>>' + newSettings.pauseInSec);
 		}
 		if ('repeatsInSet' in req.params) {
-			console.log('>>>>' + req.params.repeatsInSet);
+			console.log('>>' + req.params.repeatsInSet);
 			newSettings.repeatsInSet = req.params.repeatsInSet;
+			console.log('>>>>' + newSettings.repeatsInSet);
 		}
 
 		newSettings.save().then(function(newSettings) {
