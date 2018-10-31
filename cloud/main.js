@@ -95,9 +95,11 @@ Parse.Cloud.define('settings', async (req) => {
 			console.log('>>>>' + newSettings.repeatsInSet);
 		}
 
-		newSettings.save().then(function(newSettings) {
+		/*newSettings.save().then(function(newSettings) {
 			console.log('>> settings saved');
-		}, function(err) { console.log('>> error in saving: ' + err); });
+		}, function(err) { console.log('>> error in saving: ' + err); });*/
+		const results = await newSettings.save();
+		console.log('>> settings saved');
 
 	} else {
 		console.log(">> empty json");
