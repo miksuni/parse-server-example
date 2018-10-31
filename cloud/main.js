@@ -67,29 +67,37 @@ Parse.Cloud.define('hello', async (req) => {
 });
 
 Parse.Cloud.define('settings', async (req) => {
-	console.log(">>Request: " + JSON.stringify(req));
-	//console.log(req.Input);
+	//console.log(">>Request: " + JSON.stringify(req));
 
 	if (Object.keys(req.params).length > 0) {
-		console.log("json contains data");
+		console.log(">> json contains data");
+
+		var newSettings = new Parse.Object('Settings');
+
+		if ('name' in req.params) {
+			console.log('>>>>' + req.params.name);
+			newSettings.name = req.params.name;
+		} else {console.log('>>> name not found');}
+		if ('exerciseCount' in req.params) {
+			console.log('>>>>' + req.params.exerciseCount);
+			newSettings.exerciseCount = req.params.exerciseCount;
+		} else {console.log('>>> exerciseCount not found');}
+		if ('pauseInSec' in req.params) {
+			console.log('>>>>' + req.params.pauseInSec);
+			newSettings.pauseInSec = req.params.pauseInSec;
+		}
+		if ('repeatsInSet' in req.params) {
+			console.log('>>>>' + req.params.repeatsInSet);
+			newSettings.repeatsInSet = req.params.repeatsInSet;
+		}
+
+		newSettings.save().then(function(newSettings) {
+			console.log('>> settings saved');
+		}, function(err) { console.log('>> error in saving: ' + err); });
+
 	} else {
-		console.log("empty json");
+		console.log(">> empty json");
 	}
-
-	/*if ('name' in req) {
-		console.log('>>>>' + req.name);
-	} else {console.log('>>> name not found');}*/
-	if ('exerciseCount' in req.params) {
-		console.log('>>>>' + req.params.exerciseCount);
-	} else {console.log('>>> exerciseCount not found');}
-	if ('pauseInSec' in req.params) {
-		console.log('>>>>' + req.params.pauseInSec);
-	}
-	if ('repeatsInSet' in req.params) {
-		console.log('>>>>' + req.params.repeatsInSet);
-	}
-
-	//this.settings = JSON.parse(req.Input);
 
 	let returnMessage = '';
 
@@ -107,6 +115,6 @@ Parse.Cloud.define('settings', async (req) => {
 						  exerciseCount: exerciseCountVal,
 						  pauseInSec: pauseInSecVal,
 						  repeatsInSet: repeatsInSetVal});
-	console.log('return message: ' + returnMessage);
+	console.log('>> return message: ' + returnMessage);
 	return returnMessage;
 });
