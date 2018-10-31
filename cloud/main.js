@@ -70,7 +70,7 @@ Parse.Cloud.define('settings', async (req) => {
 	console.log(">>Request: " + JSON.stringify(req));
 	//console.log(req.Input);
 
-	if (Object.keys(req).length > 0) {
+	if (Object.keys(req.params).length > 0) {
 		console.log("json contains data");
 	} else {
 		console.log("empty json");
@@ -79,14 +79,14 @@ Parse.Cloud.define('settings', async (req) => {
 	/*if ('name' in req) {
 		console.log('>>>>' + req.name);
 	} else {console.log('>>> name not found');}*/
-	if ('exerciseCount' in req) {
-		console.log('>>>>' + req.exerciseCount);
+	if ('exerciseCount' in req.params) {
+		console.log('>>>>' + req.params.exerciseCount);
 	} else {console.log('>>> exerciseCount not found');}
-	if ('pauseInSec' in req) {
-		console.log('>>>>' + req.pauseInSec);
+	if ('pauseInSec' in req.params) {
+		console.log('>>>>' + req.params.pauseInSec);
 	}
-	if ('repeatsInSet' in req) {
-		console.log('>>>>' + req.repeatsInSet);
+	if ('repeatsInSet' in req.params) {
+		console.log('>>>>' + req.params.repeatsInSet);
 	}
 
 	//this.settings = JSON.parse(req.Input);
@@ -107,6 +107,6 @@ Parse.Cloud.define('settings', async (req) => {
 						  exerciseCount: exerciseCountVal,
 						  pauseInSec: pauseInSecVal,
 						  repeatsInSet: repeatsInSetVal});
-	console.log(returnMessage);
+	console.log('return message: ' + returnMessage);
 	return returnMessage;
 });
