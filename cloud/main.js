@@ -126,31 +126,38 @@ Parse.Cloud.define('settings', async (req) => {
 		i++;
 	}
 
-	if ('exerciseCount' in req.params) {
-		console.log('>>' + req.params.exerciseCount);
-		//newSettings.exerciseCount = req.params.exerciseCount;
-		results[i].set('exerciseCount', parseInt(req.params.exerciseCount,10));
-		console.log('>>>>' + results[i].exerciseCount);
-	} else {console.log('>> exerciseCount not found');}
-	if ('pauseInSec' in req.params) {
-		console.log('>>' + req.params.pauseInSec);
-		//newSettings.pauseInSec = req.params.pauseInSec;
-		results[i].set('pauseInSec', parseInt(req.params.pauseInSec,10));
-		console.log('>>>>' + results[i].pauseInSec);
-	}
-	if ('repeatsInSet' in req.params) {
-		console.log('>>' + req.params.repeatsInSet);
-		//newSettings.repeatsInSet = req.params.repeatsInSet;
-		results[i].set('repeatsInSet', parseInt(req.params.repeatsInSet,10));
-		console.log('>>>>' + results[i].repeatsInSet);
-	}
+	var newSettings = results[i];
 
-	var newSettings;
-	results[i].save().then(function(newSettings) {
-		console.log('>> settings saved');
-	}, function(err) { console.log('>> error in saving: ' + err); });
-	//const results = await newSettings.save();
-	console.log('>> settings saved');
+	if (Object.keys(req.params).length > 0) {
+		console.log(">> json contains data");
+
+		if ('exerciseCount' in req.params) {
+			console.log('>>' + req.params.exerciseCount);
+			//newSettings.exerciseCount = req.params.exerciseCount;
+			results[i].set('exerciseCount', parseInt(req.params.exerciseCount,10));
+			console.log('>>>>' + results[i].exerciseCount);
+		} else {console.log('>> exerciseCount not found');}
+		if ('pauseInSec' in req.params) {
+			console.log('>>' + req.params.pauseInSec);
+			//newSettings.pauseInSec = req.params.pauseInSec;
+			results[i].set('pauseInSec', parseInt(req.params.pauseInSec,10));
+			console.log('>>>>' + results[i].pauseInSec);
+		}
+		if ('repeatsInSet' in req.params) {
+			console.log('>>' + req.params.repeatsInSet);
+			//newSettings.repeatsInSet = req.params.repeatsInSet;
+			results[i].set('repeatsInSet', parseInt(req.params.repeatsInSet,10));
+			console.log('>>>>' + results[i].repeatsInSet);
+		}
+
+		results[i].save().then(function(newSettings) {
+			console.log('>> settings saved');
+		}, function(err) { console.log('>> error in saving: ' + err); });
+		//const results = await newSettings.save();
+
+	} else {
+		console.log(">> empty json");
+	}
 
 	returnMessage =  JSON.stringify({name: newSettings.name,
 						  exerciseCount: newSettings.exerciseCount,
