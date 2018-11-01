@@ -72,35 +72,6 @@ Parse.Cloud.define('settings', async (req) => {
 	if (Object.keys(req.params).length > 0) {
 		console.log(">> json contains data");
 
-
-
-var obj = new Parse.Object('GameScore');
-	console.log('--> step 1');
-	obj.set('score',1338);
-	console.log('--> step 2');
-	obj.save().then(function(obj) {
-		//console.log('--> step 3');
-		//console.log(obj.toJSON());
-		//var query = new Parse.Query('GameScore');
-		//console.log('--> step 4');
-		//query.get(obj.id).then(function(objAgain) {
-		//	console.log('--> step 5');
-		//	console.log(objAgain.toJSON());
-		//}, function(err) {console.log(err); });
-	}, function(err) { console.log(err); });
-
-
-
-
-
-
-
-
-
-
-
-
-
 		var newSettings = new Parse.Object('Settings');
 
 		if ('name' in req.params) {
@@ -112,19 +83,19 @@ var obj = new Parse.Object('GameScore');
 		if ('exerciseCount' in req.params) {
 			console.log('>>' + req.params.exerciseCount);
 			//newSettings.exerciseCount = req.params.exerciseCount;
-			newSettings.set('exerciseCount', req.params.exerciseCount);
+			newSettings.set('exerciseCount', parseInt(req.params.exerciseCount,10));
 			console.log('>>>>' + newSettings.exerciseCount);
 		} else {console.log('>> exerciseCount not found');}
 		if ('pauseInSec' in req.params) {
 			console.log('>>' + req.params.pauseInSec);
 			//newSettings.pauseInSec = req.params.pauseInSec;
-			newSettings.set('pauseInSec', req.params.pauseInSec);
+			newSettings.set('pauseInSec', parseInt(req.params.pauseInSec,10));
 			console.log('>>>>' + newSettings.pauseInSec);
 		}
 		if ('repeatsInSet' in req.params) {
 			console.log('>>' + req.params.repeatsInSet);
 			//newSettings.repeatsInSet = req.params.repeatsInSet;
-			newSettings.set('repeatsInSet', req.params.repeatsInSet);
+			newSettings.set('repeatsInSet', parseInt(req.params.repeatsInSet,10));
 			console.log('>>>>' + newSettings.repeatsInSet);
 		}
 
