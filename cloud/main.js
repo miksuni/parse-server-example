@@ -76,29 +76,33 @@ Parse.Cloud.define('settings', async (req) => {
 
 		if ('name' in req.params) {
 			console.log('>>' + req.params.name);
-			newSettings.name = req.params.name;
+			//newSettings.name = req.params.name;
+			newSettings.set('name', req.params.name);
 			console.log('>>>>' + newSettings.name);
 		} else {console.log('>>> name not found');}
 		if ('exerciseCount' in req.params) {
 			console.log('>>' + req.params.exerciseCount);
-			newSettings.exerciseCount = req.params.exerciseCount;
+			//newSettings.exerciseCount = req.params.exerciseCount;
+			newSettings.set('exerciseCount', req.params.exerciseCount);
 			console.log('>>>>' + newSettings.exerciseCount);
 		} else {console.log('>> exerciseCount not found');}
 		if ('pauseInSec' in req.params) {
 			console.log('>>' + req.params.pauseInSec);
-			newSettings.pauseInSec = req.params.pauseInSec;
+			//newSettings.pauseInSec = req.params.pauseInSec;
+			newSettings.set('pauseInSec', req.params.pauseInSec);
 			console.log('>>>>' + newSettings.pauseInSec);
 		}
 		if ('repeatsInSet' in req.params) {
 			console.log('>>' + req.params.repeatsInSet);
-			newSettings.repeatsInSet = req.params.repeatsInSet;
+			//newSettings.repeatsInSet = req.params.repeatsInSet;
+			newSettings.set('repeatsInSet', req.params.repeatsInSet);
 			console.log('>>>>' + newSettings.repeatsInSet);
 		}
 
-		/*newSettings.save().then(function(newSettings) {
+		newSettings.save().then(function(newSettings) {
 			console.log('>> settings saved');
-		}, function(err) { console.log('>> error in saving: ' + err); });*/
-		const results = await newSettings.save();
+		}, function(err) { console.log('>> error in saving: ' + err); });
+		//const results = await newSettings.save();
 		console.log('>> settings saved');
 
 	} else {
