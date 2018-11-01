@@ -72,6 +72,35 @@ Parse.Cloud.define('settings', async (req) => {
 	if (Object.keys(req.params).length > 0) {
 		console.log(">> json contains data");
 
+
+
+var obj = new Parse.Object('GameScore');
+	console.log('--> step 1');
+	obj.set('score',1338);
+	console.log('--> step 2');
+	obj.save().then(function(obj) {
+		//console.log('--> step 3');
+		//console.log(obj.toJSON());
+		//var query = new Parse.Query('GameScore');
+		//console.log('--> step 4');
+		//query.get(obj.id).then(function(objAgain) {
+		//	console.log('--> step 5');
+		//	console.log(objAgain.toJSON());
+		//}, function(err) {console.log(err); });
+	}, function(err) { console.log(err); });
+
+
+
+
+
+
+
+
+
+
+
+
+
 		var newSettings = new Parse.Object('Settings');
 
 		if ('name' in req.params) {
