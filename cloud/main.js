@@ -127,6 +127,8 @@ Parse.Cloud.define('settings', async (req) => {
 	}
 
 	var newSettings = results[i];
+	console.log('>> result[i]: '+JSON.stringify(results[i]));
+	console.log('newSettings: '+JSON.stringify(newSettings));
 
 	if (Object.keys(req.params).length > 0) {
 		console.log(">> json contains data");
