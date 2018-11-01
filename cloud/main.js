@@ -69,7 +69,7 @@ Parse.Cloud.define('hello', async (req) => {
 Parse.Cloud.define('settings', async (req) => {
 	//console.log(">>Request: " + JSON.stringify(req));
 
-	if (Object.keys(req.params).length > 0) {
+	/*if (Object.keys(req.params).length > 0) {
 		console.log(">> json contains data");
 
 		var newSettings = new Parse.Object('Settings');
@@ -107,24 +107,55 @@ Parse.Cloud.define('settings', async (req) => {
 
 	} else {
 		console.log(">> empty json");
-	}
+	}*/
 
 	let returnMessage = '';
 
 	const query = new Parse.Query('Settings');
 	const results = await query.find();
+	var i = 0;
 
-	if (results.length > 0) {
-		settingsNameVal = results[0].get("name");
-		exerciseCountVal = results[0].get("exerciseCount");
-		pauseInSecVal = results[0].get("pauseInSec");
-		repeatsInSetVal = results[0].get("repeatsInSet");
+	for (i; i < results.length; i++) {
+		console.log('>> setting obj found');
+		settingsNameVal = results[i].get("name");
+		exerciseCountVal = results[i].get("exerciseCount");
+		pauseInSecVal = results[i].get("pauseInSec");
+		repeatsInSetVal = results[i].get("repeatsInSet");
+		var n = settingsNameVal.localeCompare('default');
+		if (n == 0) {break;}
+		i++;
 	}
 
-	returnMessage =  JSON.stringify({name: settingsNameVal,
-						  exerciseCount: exerciseCountVal,
-						  pauseInSec: pauseInSecVal,
-						  repeatsInSet: repeatsInSetVal});
+	if ('exerciseCount' in req.params) {
+		console.log('>>' + req.params.exerciseCount);
+		//newSettings.exerciseCount = req.params.exerciseCount;
+		results[i].set('exerciseCount', parseInt(req.params.exerciseCount,10));
+		console.log('>>>>' + results[i].exerciseCount);
+	} else {console.log('>> exerciseCount not found');}
+	if ('pauseInSec' in req.params) {
+		console.log('>>' + req.params.pauseInSec);
+		//newSettings.pauseInSec = req.params.pauseInSec;
+		results[i].set('pauseInSec', parseInt(req.params.pauseInSec,10));
+		console.log('>>>>' + results[i].pauseInSec);
+	}
+	if ('repeatsInSet' in req.params) {
+		console.log('>>' + req.params.repeatsInSet);
+		//newSettings.repeatsInSet = req.params.repeatsInSet;
+		results[i].set('repeatsInSet', parseInt(req.params.repeatsInSet,10));
+		console.log('>>>>' + results[i].repeatsInSet);
+	}
+
+	var newSettings;
+	results[i].save().then(function(newSettings) {
+		console.log('>> settings saved');
+	}, function(err) { console.log('>> error in saving: ' + err); });
+	//const results = await newSettings.save();
+	console.log('>> settings saved');
+
+	returnMessage =  JSON.stringify({name: newSettings.name,
+						  exerciseCount: newSettings.exerciseCount,
+						  pauseInSec: newSettings.pauseInSec,
+						  repeatsInSet: newSettings.repeatsInSet});
 	console.log('>> return message: ' + returnMessage);
 	return returnMessage;
 });
