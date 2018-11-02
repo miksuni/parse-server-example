@@ -109,22 +109,7 @@ Parse.Cloud.define('settings', async (req) => {
 		console.log(">> empty json");
 	}*/
 
-	let returnMessage = '';
-
-	const query = new Parse.Query('Settings');
-	const results = await query.find();
-	var i = 0;
-
-	for (i; i < results.length; i++) {
-		console.log('>> setting obj found');
-		settingsNameVal = results[i].get("name");
-		exerciseCountVal = results[i].get("exerciseCount");
-		pauseInSecVal = results[i].get("pauseInSec");
-		repeatsInSetVal = results[i].get("repeatsInSet");
-		var n = settingsNameVal.localeCompare('default');
-		if (n == 0) {break;}
-		i++;
-	}
+	let returnMessage = 'Ok';
 
 	var newSettings = results[i];
 	console.log('>>>>');
@@ -155,17 +140,36 @@ Parse.Cloud.define('settings', async (req) => {
 
 		results[i].save().then(function(newSettings) {
 			console.log('>> settings saved');
-		}, function(err) { console.log('>> error in saving: ' + err); });
+		}, function(err) {
+			console.log('>> error in saving: ' + err);
+			returnMessage = 'Failed';
+		});
 		//const results = await newSettings.save();
 
 	} else {
-		console.log(">> empty json");
-	}
+		console.log(">> empty json, return current settings");
 
-	returnMessage =  JSON.stringify({name: newSettings.name,
+		const query = new Parse.Query('Settings');
+		const results = await query.find();
+		var i = 0;
+
+		for (i; i < results.length; i++) {
+			console.log('>> setting obj found');
+			settingsNameVal = results[i].get("name");
+			exerciseCountVal = results[i].get("exerciseCount");
+			pauseInSecVal = results[i].get("pauseInSec");
+			repeatsInSetVal = results[i].get("repeatsInSet");
+			var n = settingsNameVal.localeCompare('default');
+			if (n == 0) {break;}
+			i++;
+		}
+
+		returnMessage =  JSON.stringify({name: newSettings.name,
 						  exerciseCount: newSettings.exerciseCount,
 						  pauseInSec: newSettings.pauseInSec,
 						  repeatsInSet: newSettings.repeatsInSet});
+	}
+
 	console.log('>> return message: ' + returnMessage);
 	return returnMessage;
 });
