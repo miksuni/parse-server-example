@@ -119,7 +119,28 @@ Parse.Cloud.define('settings', async (req) => {
 	if (Object.keys(req.params).length > 0) {
 		console.log(">> json contains data");
 
-		var newSettings = new Parse.Object('Settings');
+
+
+
+
+		const query = new Parse.Query('Settings');
+		const results = await query.find();
+		var i = 0;
+
+		for (i; i < results.length; i++) {
+			console.log('>> setting obj found');
+			settingsNameVal = results[i].get("name");
+			exerciseCountVal = results[i].get("exerciseCount");
+			pauseInSecVal = results[i].get("pauseInSec");
+			repeatsInSetVal = results[i].get("repeatsInSet");
+			var n = settingsNameVal.localeCompare('default');
+			if (n == 0) {break;}
+			i++;
+		}
+
+
+		//var newSettings = new Parse.Object('Settings');
+		var newSettings = results[i];
 
 		if ('name' in req.params) {
 			console.log('>>' + req.params.name);
