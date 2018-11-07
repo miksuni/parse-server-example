@@ -158,11 +158,10 @@ Parse.Cloud.define('newTraining', async (req) => {
 	if (Object.keys(req.params).length > 0) {
 		console.log(">> training json contains data");
 
-			if ('exerciseId' in req.params) {
-				console.log('>>' + req.params.exerciseId);
-				//newSettings.set('name', req.params.name);
-				//console.log('>>>>' + newSettings.name);
-			}
+		if ('exerciseId' in req.params) {
+			console.log('>>' + req.params.exerciseId);
+			//newSettings.set('name', req.params.name);
+			//console.log('>>>>' + newSettings.name);
 		}
 	} else {
 		console.log(">> training json does not contain data");
