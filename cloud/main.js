@@ -9,8 +9,8 @@ Parse.Cloud.define('hello', async (req) => {
 
     var returnMessage = '...';
 
-    settingsStr: string = '';
-	settings = { name:'', exerciseCount:'', pauseInSec:'', repeatsInSet:'' };
+    //settingsStr: string = '';
+	//settings = { name:'', exerciseCount:'', pauseInSec:'', repeatsInSet:'' };
 
     /*var exercises = Parse.Object.extend("Exercise");
     returnMessage = 'step 1';
@@ -149,4 +149,22 @@ Parse.Cloud.define('settings', async (req) => {
 
 	console.log('>> return message: ' + returnMessage);
 	return returnMessage;
+});
+
+Parse.Cloud.define('newTraining', async (req) => {
+
+	let returnMessage = 'Ok';
+
+	if (Object.keys(req.params).length > 0) {
+		console.log(">> training json contains data");
+
+			if ('exerciseId' in req.params) {
+				console.log('>>' + req.params.exerciseId);
+				//newSettings.set('name', req.params.name);
+				//console.log('>>>>' + newSettings.name);
+			}
+		}
+	} else {
+		console.log(">> training json does not contain data");
+	}
 });
