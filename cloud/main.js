@@ -169,7 +169,7 @@ Parse.Cloud.define('newTraining', async (req) => {
 	}
 });
 
-Parse.Cloud.define('excercise', async (req) => {
+/*Parse.Cloud.define('excercise', async (req) => {
 
 	let returnMessage = 'Ok';
 
@@ -206,4 +206,4 @@ Parse.Cloud.define('excercise', async (req) => {
 	console.log('>> return message: ' + returnMessage);
 	return returnMessage;
 	}
-});
+});*/
