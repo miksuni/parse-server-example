@@ -141,10 +141,11 @@ Parse.Cloud.define('settings', async (req) => {
 			i++;
 		}
 
-		returnMessage =  JSON.stringify({name: settingsNameVal,
-						  exerciseCount: exerciseCountVal,
-						  pauseInSec: pauseInSecVal,
-						  repeatsInSet: repeatsInSetVal});
+		//returnMessage =  JSON.stringify({name: settingsNameVal,
+		//				  exerciseCount: exerciseCountVal,
+		//				  pauseInSec: pauseInSecVal,
+		//				  repeatsInSet: repeatsInSetVal});
+		returnMessage = JSON.stringify(results);
 	}
 
 	console.log('>> return message: ' + returnMessage);
@@ -165,5 +166,43 @@ Parse.Cloud.define('newTraining', async (req) => {
 		}
 	} else {
 		console.log(">> training json does not contain data");
+	}
+});
+
+Parse.Cloud.define('excercise', async (req) => {
+
+	let returnMessage = 'Ok';
+
+	if (Object.keys(req.params).length > 0) {
+		console.log(">> excercise json contains data");
+	} else {
+		console.log(">> excercise json does not contain data, return current exercises");
+
+		const query = new Parse.Query('Exercise');
+		const results = await query.find();
+		var i = 0;
+
+		for (i; i < results.length; i++) {
+			console.log('>> exercise obj found');
+			const name = results[i].get("name");
+			const order = results[i].get("order");
+			const exerciseId = results[i].get("exerciseId");
+			const targetArea = results[i].get("targetArea");
+			const pauseInSec = results[i].get("pauseInSec");
+			const setCount = results[i].get("setCount");
+			const repeatsInSet = results[i].get("repeatsInSet");
+			//var n = settingsNameVal.localeCompare('default');
+			//if (n == 0) {break;}
+			i++;
+		}
+
+		returnMessage =  JSON.stringify({name: settingsNameVal,
+						  exerciseCount: exerciseCountVal,
+						  pauseInSec: pauseInSecVal,
+						  repeatsInSet: repeatsInSetVal});
+	}
+
+	console.log('>> return message: ' + returnMessage);
+	return returnMessage;
 	}
 });
