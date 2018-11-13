@@ -141,11 +141,10 @@ Parse.Cloud.define('settings', async (req) => {
 			i++;
 		}
 
-		//returnMessage =  JSON.stringify({name: settingsNameVal,
-		//				  exerciseCount: exerciseCountVal,
-		//				  pauseInSec: pauseInSecVal,
-		//				  repeatsInSet: repeatsInSetVal});
-		returnMessage = JSON.stringify(results);
+		returnMessage =  JSON.stringify({name: settingsNameVal,
+						  exerciseCount: exerciseCountVal,
+						  pauseInSec: pauseInSecVal,
+						  repeatsInSet: repeatsInSetVal});
 	}
 
 	console.log('>> return message: ' + returnMessage);
@@ -169,7 +168,7 @@ Parse.Cloud.define('newTraining', async (req) => {
 	}
 });
 
-Parse.Cloud.define('excercise', async (req) => {
+Parse.Cloud.define('exercises', async (req) => {
 
 	let returnMessage = 'Ok';
 
