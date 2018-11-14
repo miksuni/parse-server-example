@@ -158,11 +158,35 @@ Parse.Cloud.define('newTraining', async (req) => {
 	if (Object.keys(req.params).length > 0) {
 		console.log(">> training json contains data");
 
-		if ('exerciseId' in req.params) {
-			console.log('>>' + req.params.exerciseId);
-			//newSettings.set('name', req.params.name);
-			//console.log('>>>>' + newSettings.name);
+		var obj = new Parse.Object('Training');
+
+		//if ('data' in req.params) {
+		//	console.log('>>' + req.params.date);
+		//	obj.set('date', req.params.date);
+		//}
+		//if ('exercise' in req.params) {
+		//	console.log('>>' + req.params.exercise);
+		//	obj.set('exercise', req.params.exercise,);
+		//}
+		if ('pauseInSec' in req.params) {
+			console.log('>>' + req.params.pauseInSec);
+			obj.set('pauseInSec', parseInt(req.params.pauseInSec, 10));
 		}
+		if ('weightInKg' in req.params) {
+			console.log('>>' + req.params.weightInKg);
+			obj.set('weightInKg', parseInt(req.params.weightInKg, 10));
+		}
+		if ('setCount' in req.params) {
+			console.log('>>' + req.params.setCount);
+			obj.set('setCount', parseInt(req.params.setCount, 10));
+		}
+		if ('repeatsInSet' in req.params) {
+			console.log('>>' + req.params.repeatsInSet);
+			obj.set('repeatsInSet', parseInt(req.params.repeatsInSet, 10));
+		}
+		obj.save().then(function(obj) {
+			console.log('>> exercise saved');
+		}, function(err) { console.log(err); });
 	} else {
 		console.log(">> training json does not contain data");
 	}
