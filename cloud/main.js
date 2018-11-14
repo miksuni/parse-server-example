@@ -151,7 +151,7 @@ Parse.Cloud.define('settings', async (req) => {
 
 		returnMessage =  JSON.stringify({name: settingsNameVal,
 						  exerciseCount: exerciseCountVal,
-						  setCount: setCountVal;
+						  setCount: setCountVal,
 						  pauseInSec: pauseInSecVal,
 						  repeatsInSet: repeatsInSetVal});
 	}
