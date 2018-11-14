@@ -173,10 +173,24 @@ Parse.Cloud.define('newTraining', async (req) => {
 		//	console.log('>>' + req.params.date);
 		//	obj.set('date', req.params.date);
 		//}
-		//if ('exercise' in req.params) {
-		//	console.log('>>' + req.params.exercise);
-		//	obj.set('exercise', req.params.exercise,);
-		//}
+		if ('exercise' in req.params) {
+			console.log('>>' + req.params.exercise);
+
+			const query = new Parse.Query('Exercise');
+			const results = await query.find();
+			var i = 0;
+
+			for (i; i < results.length; i++) {
+				console.log('>> iterate exercises...');
+				var n = results[i].id.localeCompare(req.params.exercise);
+				if (n == 0) {
+					console.log('>> exercise found');
+					obj.set('exercise', results[i]);
+					break;
+				}
+				i++;
+			}
+		}
 		if ('pauseInSec' in req.params) {
 			console.log('>>' + req.params.pauseInSec);
 			obj.set('pauseInSec', parseInt(req.params.pauseInSec, 10));
