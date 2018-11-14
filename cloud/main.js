@@ -81,6 +81,7 @@ Parse.Cloud.define('settings', async (req) => {
 			console.log('>> setting obj found');
 			settingsNameVal = results[i].get("name");
 			exerciseCountVal = results[i].get("exerciseCount");
+			setCountVal = results[i].get("setCountVal");
 			pauseInSecVal = results[i].get("pauseInSec");
 			repeatsInSetVal = results[i].get("repeatsInSet");
 			var n = settingsNameVal.localeCompare('default');
@@ -102,6 +103,12 @@ Parse.Cloud.define('settings', async (req) => {
 			newSettings.set('exerciseCount', parseInt(req.params.exerciseCount,10));
 			console.log('>>>>' + newSettings.exerciseCount);
 		} else {console.log('>> exerciseCount not found');}
+
+		if ('setCount' in req.params) {
+			console.log('>>' + req.params.setCount);
+			newSettings.set('setCount', parseInt(req.params.setCount,10));
+			console.log('>>>>' + newSettings.setCount);
+		} else {console.log('>> setCount not found');}
 
 		if ('pauseInSec' in req.params) {
 			console.log('>>' + req.params.pauseInSec);
@@ -134,6 +141,7 @@ Parse.Cloud.define('settings', async (req) => {
 			console.log('>> setting obj found');
 			settingsNameVal = results[i].get("name");
 			exerciseCountVal = results[i].get("exerciseCount");
+			setCountVal = results[i].get("setCount");
 			pauseInSecVal = results[i].get("pauseInSec");
 			repeatsInSetVal = results[i].get("repeatsInSet");
 			var n = settingsNameVal.localeCompare('default');
@@ -143,6 +151,7 @@ Parse.Cloud.define('settings', async (req) => {
 
 		returnMessage =  JSON.stringify({name: settingsNameVal,
 						  exerciseCount: exerciseCountVal,
+						  setCount: setCountVal;
 						  pauseInSec: pauseInSecVal,
 						  repeatsInSet: repeatsInSetVal});
 	}
@@ -214,15 +223,9 @@ Parse.Cloud.define('exercises', async (req) => {
 			const pauseInSec = results[i].get("pauseInSec");
 			const setCount = results[i].get("setCount");
 			const repeatsInSet = results[i].get("repeatsInSet");
-			//var n = settingsNameVal.localeCompare('default');
-			//if (n == 0) {break;}
 			i++;
 		}
 
-		//returnMessage =  JSON.stringify({name: settingsNameVal,
-		//				  exerciseCount: exerciseCountVal,
-		//				  pauseInSec: pauseInSecVal,
-		//				  repeatsInSet: repeatsInSetVal});
 		returnMessage = JSON.stringify(results);
 
 		console.log('>> return message: ' + returnMessage);
