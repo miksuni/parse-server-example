@@ -165,14 +165,15 @@ Parse.Cloud.define('newTraining', async (req) => {
 	let returnMessage = 'Ok';
 
 	if (Object.keys(req.params).length > 0) {
-		console.log(">> training json contains data");
+		console.log(">>>> training json contains data");
 
 		var obj = new Parse.Object('Training');
 
-		if ('date' in req.params) {
-			console.log('>>' + req.params.date);
-			obj.set('date', req.params.date);
-		}
+		//if ('date' in req.params) {
+		//	console.log('>>' + req.params.date);
+		//	obj.set('date', req.params.date);
+		//}
+		obj.set('date', new Date());
 		if ('exercise' in req.params) {
 			console.log('>>' + req.params.exercise);
 
