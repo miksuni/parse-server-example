@@ -169,10 +169,10 @@ Parse.Cloud.define('newTraining', async (req) => {
 
 		var obj = new Parse.Object('Training');
 
-		//if ('data' in req.params) {
-		//	console.log('>>' + req.params.date);
+		if ('date' in req.params) {
+			console.log('>>' + req.params.date);
 		//	obj.set('date', req.params.date);
-		//}
+		}
 		if ('exercise' in req.params) {
 			console.log('>>' + req.params.exercise);
 
