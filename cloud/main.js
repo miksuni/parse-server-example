@@ -181,6 +181,8 @@ Parse.Cloud.define('newTraining', async (req) => {
 			const results = await query.find();
 			var i = 0;
 
+
+
 			for (i; i < results.length; i++) {
 				console.log('>> iterate exercises...');
 				var n = results[i].id.localeCompare(req.params.exercise);
@@ -189,7 +191,6 @@ Parse.Cloud.define('newTraining', async (req) => {
 					obj.set('exercise', results[i]);
 					break;
 				}
-				i++;
 			}
 		}
 		if ('pauseInSec' in req.params) {
@@ -238,7 +239,6 @@ Parse.Cloud.define('exercises', async (req) => {
 			const pauseInSec = results[i].get("pauseInSec");
 			const setCount = results[i].get("setCount");
 			const repeatsInSet = results[i].get("repeatsInSet");
-			i++;
 		}
 
 		returnMessage = JSON.stringify(results);
